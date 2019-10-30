@@ -1,7 +1,7 @@
 from django.urls import path, include
 
 urlpatterns = [
-    path('article', include('article.urls')),
-    path('comment', include('comment.urls')),
-    path('user', include('user.urls')),
+    path('articles', include('articles.urls')),
+    path('comments', include('comments.urls')),
+    path('users', include('users.urls')),
 ]
