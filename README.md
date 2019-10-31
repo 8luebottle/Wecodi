@@ -4,9 +4,21 @@
 
 By. 8luebottle
 
+# Table of Contents
+[About](#about)
+
+[Getting Started](#getting-started)
+
 # About
-This project is a second version of Wecodi
+> This project is a second version of Wecodi
 
 WIP
 
-# Table of Contents
+# Getting Started
+## Installing
+```
+git clone https://github.com/8luebottle/Wecodi.git
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
