@@ -9,6 +9,8 @@ By. 8luebottle
 
 [Getting Started](#getting-started)
 
+[DB Schema](#db-schema)
+
 # About
 > This project is a second version of Wecodi
 
@@ -22,3 +24,5 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 ```
+# DB Schema
+[ERD](https://www.erdcloud.com/d/7JrENqut7AizoGj2L)
