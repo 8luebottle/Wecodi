@@ -1,9 +1,9 @@
 from django.db   import models
-from user.models import User
+from users.models import User
 
 class Article(models.Model):
-    category   = models.ForignKey(ArticleCategory,on_delete=models.PROTECT)
-    tags       = models.ManyToManyField(Tag, blank=True, on_delete=models.PROTECT)
+    category   = models.ForeignKey('ArticleCategory', on_delete=models.PROTECT)
+    tags       = models.ManyToManyField('Tag')
     title      = models.CharField(max_length=300)
     thumb_img  = models.CharField(max_length=2500)
     content    = models.TextField()
