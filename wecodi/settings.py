@@ -5,16 +5,13 @@ from . import my_settings
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = my_settings.SECRET_KEY 
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*', 'localhost', 'localhost:8000', '127.0.0.1:8000' ]
+ALLOWED_HOSTS = ['*', 'localhost', 'localhost:8000', '127.0.0.1:8000', '127.0.0.1', 'localhost:8001' ]
 
 
 # Application definition
@@ -96,11 +93,11 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'Asia/Seoul'
 
-USE_I18N = True
+USE_I18N  = True
 
-USE_L10N = True
+USE_L10N  = True
 
-USE_TZ = True
+USE_TZ    = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -109,10 +106,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 #warning delete
-APPEND_SLASH=False
+APPEND_SLASH = False
 
 ##CORS
-CORS_ORIGIN_ALLOW_ALL = True
+CORS_ORIGIN_ALLOW_ALL  = True
 CORS_ALLOW_CREDENTIALS = True
 
 CORS_ALLOW_METHODS = (
