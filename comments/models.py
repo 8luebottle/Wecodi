@@ -1,4 +1,4 @@
-from django.db      import models
+from django.db       import models
 from articles.models import Article
 from users.models    import User
 
