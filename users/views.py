@@ -13,22 +13,12 @@ from django.views import View
 from .models import User, Profile
 
 """
-LogIn
-    - Email
-    - Kakao
-    - Google
-    - Facebook
+LogIn (Email, Kakao, Google, Facebook)
 LogOut
 Delete Account
 Change PW
-Profile
-    - Create
-    - Update
-    - View
-User List View (Admin)
-    - All
-    - Blocked
-    - Unblocked
+Profile(Create, Update, View)
+ADMIN User List View (All, Blocked, Unblocked)
 Blocking User View (Admin) --> UserStatusView
 """
 
@@ -52,7 +42,6 @@ class SignUpView(View): # User SignUp
 
     def post(self, request):
         request_dict = json.loads(request.body)
-        print(request_dict)
 
         email      = request_dict['email']
         password   = request_dict['password']
@@ -79,7 +68,7 @@ class SignUpView(View): # User SignUp
         
         User(
             email      = email,
-            password   = str(encrypted_pw),
+            password   = encrypted_pw,
             first_name = first_name,
             last_name  = last_name
         ).save()
@@ -87,19 +76,42 @@ class SignUpView(View): # User SignUp
         return JsonResponse({'message' : 'SUCCESS'})
 
 
-class LoginView(View): # User Login with their email
+class LogInView(View): # User Login with their email
+    """ WIP """
+    def post(self, request):
+        request_dict = json.loads(request.body)
+        email    = request_dict['email']
+        password = request_dict['password']
+
+        print(request_dict)
+        print('This is email', email)
+        print('This is Password', password)
+
+        user = User.objects.filter(email=email)
+
+        if user.exists():
+            user = user.get()
+            print('THIS IS DB PASSWORD', user.password)
+            
+            print('\n bcrpyt.check', password.encode('UTF-8'))
+            print('\n user.pass', user.password.encode('UTF-8'))
+
+            if bcrypt.checkpw(password.encode('UTF-8'), user.password.encode('UTF-8')):
+                """ADD Payload Later"""
+                return JsonResponse({'message' : 'SUCCESS'})
+        else:
+            return JsonResponse({'error': 'INVALID_EMAIL'}, status=401)
+
+
+class KakaoLogInView(View):
     pass
 
 
-class KakaoLoginView(View):
+class GoogleLogInView(View):
     pass
 
 
-class GoogleLoginView(View):
-    pass
-
-
-class FacebookLoginView(View):
+class FacebookLogInView(View):
     pass
 
 
