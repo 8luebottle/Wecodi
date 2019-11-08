@@ -7,9 +7,10 @@ import jwt
 import re
 import requests
 
-from django.http  import HttpResponse, JsonResponse
-from django.views import View
+from django.http     import HttpResponse, JsonResponse
+from django.views    import View
 
+from wecodi.settings import SECRET_KEY
 from .models import User, Profile
 
 """
@@ -63,12 +64,14 @@ class SignUpView(View): # User SignUp
             password     = bytes(password, 'UTF-8')
             salt         = bcrypt.gensalt()
             encrypted_pw = bcrypt.hashpw(password, salt)
+
+
         else:
             return JsonResponse({'error': 'WEAK_PASSWORD'}, status=400)
         
         User(
             email      = email,
-            password   = encrypted_pw,
+            password   = encrypted_pw.decode('UTF-8'),
             first_name = first_name,
             last_name  = last_name
         ).save()
@@ -77,28 +80,24 @@ class SignUpView(View): # User SignUp
 
 
 class LogInView(View): # User Login with their email
-    """ WIP """
     def post(self, request):
         request_dict = json.loads(request.body)
-        email    = request_dict['email']
-        password = request_dict['password']
 
-        print(request_dict)
-        print('This is email', email)
-        print('This is Password', password)
-
-        user = User.objects.filter(email=email)
+        email     = request_dict['email']
+        password  = request_dict['password']
+        user      = User.objects.filter(email=email)
 
         if user.exists():
             user = user.get()
-            print('THIS IS DB PASSWORD', user.password)
-            
-            print('\n bcrpyt.check', password.encode('UTF-8'))
-            print('\n user.pass', user.password.encode('UTF-8'))
 
             if bcrypt.checkpw(password.encode('UTF-8'), user.password.encode('UTF-8')):
-                """ADD Payload Later"""
-                return JsonResponse({'message' : 'SUCCESS'})
+                payload = {'email': user.email}
+                encoded = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+                return JsonResponse({'access_token', encoded.decode('UTF-8')})
+
+            else:
+                return JsonResponse({'error': 'INVALID_PASSWORD'}, status=401)
+
         else:
             return JsonResponse({'error': 'INVALID_EMAIL'}, status=401)
 
