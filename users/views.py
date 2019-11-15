@@ -128,5 +128,6 @@ class UserSatatusView(View): #Segmentation by User Status
 
 class ProfileView(View): # User & Admin can Update their Profile
     pass
+    #@login_required
 
 
