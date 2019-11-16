@@ -102,9 +102,6 @@ class LogInView(View): # User Login with their email
         else:
             return JsonResponse({'error': 'INVALID_EMAIL'}, status=401)
 
-        else:
-            return JsonResponse({'error': 'INVALID_EMAIL'}, status=401)
-    
     
 class KakaoLogInView(View):
     pass
