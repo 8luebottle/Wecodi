@@ -89,7 +89,7 @@ class LogInView(View): # User Login with their email
 
         if user.exists():
             user = user.get()
-
+            
             # Instead of get email, use id
             if bcrypt.checkpw(password.encode('UTF-8'), user.password.encode('UTF-8')):
                 payload = {'user_id': user.id}
@@ -102,7 +102,10 @@ class LogInView(View): # User Login with their email
         else:
             return JsonResponse({'error': 'INVALID_EMAIL'}, status=401)
 
-
+        else:
+            return JsonResponse({'error': 'INVALID_EMAIL'}, status=401)
+    
+    
 class KakaoLogInView(View):
     pass
 
