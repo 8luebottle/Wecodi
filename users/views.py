@@ -85,15 +85,21 @@ class LogInView(View): # User Login with their email
 
         email     = request_dict['email']
         password  = request_dict['password']
-        user      = User.objects.filter(email=email)
+        user      = User.objects.filter(email=email, deleted=False)
 
         if user.exists():
             user = user.get()
+            now  = datetime.datetime.utcnow()
 
             # Instead of get email, use id
             if bcrypt.checkpw(password.encode('UTF-8'), user.password.encode('UTF-8')):
-                payload = {'user_id': user.id}
+                payload = {
+                    'sub': user.id,
+                    'iat': now,
+                    'exp': now + datetime.timedelta(weeks=1),
+                }
                 encoded = jwt.encode(payload, SECRET_KEY, algorithm='HS256')
+
                 return JsonResponse({'access_token': encoded.decode('UTF-8')})
 
             else:
@@ -113,6 +119,16 @@ class GoogleLogInView(View):
 
 class FacebookLogInView(View):
     pass
+
+
+class DeleteUserView(View):
+    @requires_logged_in
+    def post(self, request):
+        user = request.user
+        print('\nUSER\n', user.id, user.email)
+
+        #return JsonResponse({'message':})
+    
 
 
 class UserListView(View): #ADMIN ONLY (Need decorator)
@@ -167,4 +183,16 @@ class ProfileView(View): # User & Admin can Update their Profile
 
 
 class DeleteUserView(View):
-    pass
+    @requires_logged_in
+    def get(self, request): # Own Profile View
+        user = request.user
+        user_profile = Profile.objects.filter(user_id=user.id).get()
+       
+        return JsonResponse(
+            {
+                'nickname'    : user_profile.nickname,
+                'bio'         : user_profile.bio,
+                'profile_img' : user_profile.profile_img,
+                'last_update' : user_profile.updated_at
+            }
+        )

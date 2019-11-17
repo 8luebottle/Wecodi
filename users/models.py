@@ -18,7 +18,11 @@ class User(models.Model):
         db_table = 'users'
 
 class Profile(models.Model):
-    user        = models.ForeignKey(User, on_delete=models.CASCADE)
+    user        = models.OneToOneField(
+        User, 
+        on_delete=models.CASCADE, 
+        primary_key=True
+    )
     nickname    = models.CharField(max_length=50)
     bio         = models.CharField(max_length=254)
     profile_img = models.CharField(max_length=500, default=None, null=True)
@@ -27,4 +31,3 @@ class Profile(models.Model):
 
     class Meta:
         db_table = 'profiles'
-

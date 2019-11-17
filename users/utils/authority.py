@@ -19,7 +19,7 @@ def requires_logged_in(f):
         if access_token:
             try:
                 decoded = jwt.decode(access_token, SECRET_KEY, algorithm='HS256')
-                user_id = decoded['user_id']
+                user_id = decoded['sub']
                 user    = User.objects.get(id=user_id)
                 request.user = user
 
