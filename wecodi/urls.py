@@ -5,3 +5,4 @@ urlpatterns = [
     path('comments', include('comments.urls')),
     path('users', include('users.urls')),
 ]
+
