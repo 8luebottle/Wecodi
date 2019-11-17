@@ -120,6 +120,11 @@ class UserListView(View): #ADMIN ONLY (Need decorator)
     pass
 
 
+class UserDetailListView(View):
+    #@requires_admin
+    pass
+
+
 class BlockUserView(View): # ADMIN Block user
     #@requires_admin
     pass
@@ -159,3 +164,7 @@ class ProfileView(View): # User & Admin can Update their Profile
                 'last_update' : user_profile.updated_at
             }
         )
+
+
+class DeleteUserView(View):
+    pass
