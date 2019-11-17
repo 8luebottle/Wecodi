@@ -19,9 +19,33 @@ USER
     Read a post(Show 5?)
 """
 
-class ArticleView(View): # New Post  | Update Post
+class ArticleView(View): # New Post  | # Show All Articles (Pagination) 
+    pass
+
+
+class ArticleDetailView(View):
+    pass
+
+
+class ArticleSegmentationView(View): # By. Tags & Categories
+    pass
+
+
+class AtricleCategoryView(View):
     pass
 
 
 class ArticleDeleteView(View): # Delete Article
+    pass
+
+
+class ClickCountView(View): # Click Tracing in Articles
+    pass
+
+
+class LikeView(View):
+    pass
+
+
+class LikeCountView(View): # How many Likes
     pass
