@@ -13,12 +13,12 @@ By. 8luebottle
 
 [Tech Stack](#tech-stack)
 
+[WeCodi Data](#wecodi-data)
+
 [DB Schema](#db-schema)
 
 # About
 > This project is a second version of Wecodi
-
-WIP
 
 # Getting Started
 ## Installing
@@ -35,6 +35,9 @@ python manage.py runserver
 React, JavaScript, Sass, eslint, Babel, VS Code
 ## Back-end
 Django, mySQL, Python, AWS-EC2, AWS-RDS, vim
+
+# Wecodi Data
+[Data (excel file)](https://docs.google.com/spreadsheets/d/1vQ1yVjhfIHCnJW4XtKcCtaLLsiGNXw-OcoeGt__BTkg/edit?usp=sharing)
 
 # DB Schema
 [ERD](https://www.erdcloud.com/d/7JrENqut7AizoGj2L)
