@@ -1,5 +1,6 @@
-![Wecodi](https://user-images.githubusercontent.com/48475824/67861098-d460ef00-fb62-11e9-951f-76bcf54bef25.png)
-# Wecodi
+![Wecodi](https://user-images.githubusercontent.com/48475824/67861098-d460ef00-fb62-11e9-951f-76bcf54bef25.png)  
+# Wecodi 
+![Made with love by 8luebottle](https://img.shields.io/badge/Made%20with%20%E2%9D%A4%EF%B8%8Fby-%208luebottle%20-blue)   
 > Personal Styling for Women
 
 ![wecodi-main](https://user-images.githubusercontent.com/48475824/68990762-6b83b180-089a-11ea-84af-247bb44c2829.png)
