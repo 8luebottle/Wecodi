@@ -32,4 +32,4 @@ social-auth-core==3.2.0
 sqlparse==0.3.0
 tig==0.0.1
 tornado==4.5.3
-urllib3==1.25.3
+urllib3==1.25.8
